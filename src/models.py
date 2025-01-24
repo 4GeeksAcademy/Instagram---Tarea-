@@ -17,8 +17,9 @@ class Follower(Base):
     # variable1 = relationship("variable1", back_populates="usuario", uselist=False)  # Relación uno a uno
 
     id = Column(Integer, primary_key=True)  # ID único de cada relación
-    user_from_id = Column(String(250), nullable=False)  # Usuario que sigue
-    user_to_id = Column(String(250), nullable=False)  # Usuario seguido
+    user_from_id = Column(Integer, ForeignKey('usuario.id') nullable=False)  # Usuario que sigue
+    user_to_id = Column(Integer, ForeignKey('usuario.id') nullable=False)  # Usuario seguido
+
 
 class Usuario(Base):
     __tablename__ = 'usuario'
@@ -39,6 +40,8 @@ class Usuario(Base):
     lastname = Column(String(250), nullable=False)  # Apellido
     email = Column(String(250), nullable=False)  # Correo electrónico
     comments = relationship("Comment", back_populates="user")  # Relación con la tabla Comment
+    usuario_from_id = relationship("Follower", back_populates="follower")
+    user_to_id = relationship("Follower", back_populates = "user")
 
 class Comment(Base):
     __tablename__ = 'comment'
