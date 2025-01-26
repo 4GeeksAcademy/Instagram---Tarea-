@@ -17,8 +17,8 @@ class Follower(Base):
     # variable1 = relationship("variable1", back_populates="usuario", uselist=False)  # Relación uno a uno
 
     id = Column(Integer, primary_key=True)  # ID único de cada relación
-    user_from_id = Column(Integer, ForeignKey('usuario.id') nullable=False)  # Usuario que sigue
-    user_to_id = Column(Integer, ForeignKey('usuario.id') nullable=False)  # Usuario seguido
+    user_from_id = Column(Integer, ForeignKey('usuario.id'), nullable=False)  # Usuario que sigue
+    user_to_id = Column(Integer, ForeignKey('usuario.id'), nullable=False)  # Usuario seguido
 
 
 class Usuario(Base):
